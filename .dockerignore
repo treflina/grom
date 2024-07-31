@@ -1,0 +1,13 @@
+.git/
+*.pyc
+*.pyo
+__pycache__/
+.idea
+.vscode
+venv/
+.venv/
+*.log
+staticfiles/
+core_apps/media
+.envs/*
+notes.txt
