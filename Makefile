@@ -33,4 +33,3 @@ db-volume:
 
 flake:
 	docker compose -f local.yml run --rm api flake8 .
-

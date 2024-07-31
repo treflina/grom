@@ -1,5 +1,5 @@
-from pathlib import Path
 from os import getenv, path
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -25,7 +25,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = []
 
-LOCAL_APPS = []
+LOCAL_APPS = ["core_apps.departments", "core_apps.users"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -96,6 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "users.User"
 
 LANGUAGE_CODE = "pl"
 

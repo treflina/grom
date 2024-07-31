@@ -3,7 +3,6 @@ from os import getenv, path
 from dotenv import load_dotenv
 
 from .base import *  # noqa
-
 from .base import BASE_DIR
 
 local_env_file = path.join(BASE_DIR, ".envs", ".env.local")
@@ -24,7 +23,8 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 ADMIN_URL = getenv("DJANGO_ADMIN_URL")
 
 EMAIL_BACKEND = getenv(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend",
+    "DJANGO_EMAIL_BACKEND",
+    default="django.core.mail.backends.console.EmailBackend",
 )
 # EMAIL_HOST = getenv("EMAIL_HOST")
 # EMAIL_PORT = getenv("EMAIL_PORT")
