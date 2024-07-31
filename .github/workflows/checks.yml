@@ -34,4 +34,4 @@ jobs:
             - name: Lint
               run: docker compose -f local.yml run --rm api flake8 .
             - name: Test
-              run: docker-compose run --rm api pytest
+              run: docker-compose -f local.yml run --rm api pytest
