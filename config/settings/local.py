@@ -26,6 +26,7 @@ EMAIL_BACKEND = getenv(
     "DJANGO_EMAIL_BACKEND",
     default="django.core.mail.backends.console.EmailBackend",
 )
+
 # EMAIL_HOST = getenv("EMAIL_HOST")
 # EMAIL_PORT = getenv("EMAIL_PORT")
 # DEFAULT_FROM_EMAIL = getenv("DEFAULT_FROM_EMAIL")

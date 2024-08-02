@@ -12,8 +12,11 @@ prod_env_file = path.join(BASE_DIR, ".envs", ".env.production")
 if path.isfile(prod_env_file):
     load_dotenv(prod_env_file)
 
+DEBUG = True
 
 DJANGO_APPS = [
+    "dal",
+    "dal_select2",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -21,11 +24,23 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "django.forms",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "autocomplete",
+    "crispy_forms",
+    "crispy_tailwind",
+]
 
-LOCAL_APPS = ["core_apps.departments", "core_apps.users"]
+LOCAL_APPS = [
+    "core_apps.common",
+    "core_apps.departments",
+    "core_apps.users",
+    "core_apps.books",
+    "core_apps.projects",
+    "core_apps.orders",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -42,21 +57,32 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
+default_loaders = [
+    "django.template.loaders.filesystem.Loader",
+    "django.template.loaders.app_directories.Loader",
+]
+
+cached_loaders = [("django.template.loaders.cached.Loader", default_loaders)]
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "DIRS": [str(APPS_DIR / "templates")],
+        # "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "core_apps.common.context_processors.debug_mode",
             ],
+            "loaders": default_loaders if DEBUG else cached_loaders,
         },
     },
 ]
+
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -123,3 +149,7 @@ MEDIA_ROOT = str(APPS_DIR / "media")
 MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"

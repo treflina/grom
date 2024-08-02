@@ -35,6 +35,22 @@ services:
         networks:
             - grom_nw
 
+    node:
+        build:
+            context: .
+            dockerfile: ./docker/local/node/Dockerfile
+        image: grom_local_node
+        container_name: grom_local_node
+        tty: true
+        depends_on:
+            - api
+        volumes:
+            - .:/app:z
+            - /app/node_modules
+        command: npm run styles
+        ports:
+            - "3000:3000"
+
 networks:
     grom_nw:
         external: true

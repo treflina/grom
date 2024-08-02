@@ -3,6 +3,10 @@ core_apps/media
 .envs/*
 !.envs/.env.example
 notes.txt
+nyt-api.py
+node_modules/
+*/*/migrations/*
+!*/*/migrations/__init__.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

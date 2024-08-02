@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tailwind_filters %}
+{% block content %}
+<div class="max-w-[500px] p-8 bg-amber-200">
+    <form action="" method="post">
+        {% csrf_token %} {{ form|crispy}}
+        <input type="submit" value="Dodaj nową92" />
+    </form>
+</div>
+{% endblock %}

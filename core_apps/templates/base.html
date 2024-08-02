@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+    {% block content %}
+    {% endblock content %}
+    {% block footer %}
+    {% endblock footer %}
+    <script src="https://unpkg.com/htmx.org@1.8.3" integrity="sha384-e2no7T1BxIs3ngCTptBu4TjvRWF4bBjFW0pt7TpxOEkRJuvrjRt29znnYuoLTz9S" crossorigin="anonymous"></script>
+    <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      });
+    </script>
+    {% if debug %}
+    <script type="text/javascript">
+      window.setTimeout(function(){ document.location.reload(true); },
+      8000);
+    </script>
+    {% endif %}
+</body>
+</html>
